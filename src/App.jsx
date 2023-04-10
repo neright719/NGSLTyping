@@ -98,7 +98,7 @@ function App() {
     //初回読み込み時、単語データが入ったjsonファイルを取得する
     useEffect(() => {
         //jsonファイルを取得し、jsonをstateへ格納
-        fetch("/nsgl.json")
+        fetch("/src/nsgl.json")
             .then((response) => response.json())
             .then((data) => {
                 setNGSLData(data);
