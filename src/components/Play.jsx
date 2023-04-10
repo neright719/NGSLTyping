@@ -1,4 +1,5 @@
 import React from "react";
+import ngslPosToJapanesePos from "../util/ngslPosToJapanesePos";
 
 const Play = ({
     typeMissCount,
@@ -20,6 +21,12 @@ const Play = ({
                 <p style={{ fontSize: "40px" }}>
                     <span>{currentNGSL && currentNGSL["J Translation"]}</span>
                 </p>
+                <p>
+                    <span>
+                        {currentNGSL &&
+                            ngslPosToJapanesePos[currentNGSL["POS"]]}
+                    </span>
+                </p>
                 <p
                     style={{
                         fontSize: "38px",
@@ -28,23 +35,31 @@ const Play = ({
                     }}
                 >
                     <span style={{ color: "black" }}>
-                        {currentNGSL && currentNGSL.Meanings.slice(0, position)}
+                        {currentNGSL &&
+                            currentNGSL.Meanings.toLowerCase().slice(
+                                0,
+                                position
+                            )}
                     </span>
                     <span
                         style={{
                             color: isTypeMiss ? "red" : "blue",
                         }}
                     >
-                        {currentNGSL && currentNGSL.Meanings.charAt(position)}
+                        {currentNGSL &&
+                            currentNGSL.Meanings.toLowerCase().charAt(position)}
                     </span>
                     <span style={{ color: "#ccc" }}>
                         {currentNGSL && isMaskMode
                             ? "".padStart(
-                                  currentNGSL.Meanings.slice(position + 1)
-                                      .length,
+                                  currentNGSL.Meanings.toLowerCase().slice(
+                                      position + 1
+                                  ).length,
                                   "_"
                               )
-                            : currentNGSL.Meanings.slice(position + 1)}
+                            : currentNGSL.Meanings.toLowerCase().slice(
+                                  position + 1
+                              )}
                     </span>
                 </p>
             </div>

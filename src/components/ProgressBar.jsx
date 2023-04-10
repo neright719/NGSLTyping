@@ -11,7 +11,7 @@ const formatTime = (timeInSeconds) => {
         .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 };
 
-export const ProgressBar = ({ timer, callback }) => {
+const ProgressBar = ({ timer, callback }) => {
     const [countdown, setCountdown] = useState(timer);
     const [isEnd, setIsEnd] = useState(false);
 
@@ -46,3 +46,5 @@ export const ProgressBar = ({ timer, callback }) => {
         </div>
     );
 };
+
+export default ProgressBar;

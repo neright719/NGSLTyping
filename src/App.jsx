@@ -1,16 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-import {
-    Grid,
-    Paper,
-    Button,
-    Stack,
-} from "@mui/material";
+import { Grid, Paper, Button, Stack } from "@mui/material";
 import Play from "./components/Play";
 import Standby from "./components/Standby";
 import Result from "./components/Result";
 import Countdown from "./components/Countdonw";
-import ProgressBar  from "./components/ProgressBar";
+import ProgressBar from "./components/ProgressBar";
 import Settings from "./components/Settings";
 
 function App() {
@@ -30,6 +25,7 @@ function App() {
 
     //keyupイベントを監視している要素にフォーカスを当てるための参照
     const Ref = useRef();
+    //高さアニメーション用のref
     const HRef = useRef();
 
     // 単語一覧からランダムに単語を選択する
@@ -65,12 +61,19 @@ function App() {
             initGameState();
             return;
         }
-        //開始判定
-        if (gameState === "standby" && e.key === " ") {
-            setGameState("settings");
-        } else if (gameState === "result" && e.key === " ") {
-            initGameState();
-        } else if (gameState === "play") {
+
+        if (e.key === " ") {
+            if (gameState === "standby") {
+                setGameState("settings");
+                return;
+            }
+            if (gameState === "result") {
+                initGameState();
+                return;
+            }
+        }
+
+        if (gameState === "play") {
             if (e.key === currentNGSL.Meanings.charAt(position)) {
                 //入力位置を加算する(もし文字数を入力位置が超えていたら0をsetし、currentNGSLに新たな単語をsetする)
                 setPosition((prev) => {
@@ -113,9 +116,8 @@ function App() {
     }, [gameState, isVoicePlay, currentNGSL]);
 
     useEffect(() => {
-        console.log(HRef.current.offsetHeight)
-        setHeight(HRef.current.offsetHeight)
-    }, [gameState])
+        setHeight(HRef.current.offsetHeight);
+    }, [gameState]);
 
     return (
         <Grid
@@ -130,24 +132,27 @@ function App() {
                 <Grid item container direction="column" spacing={1}>
                     <Grid item container justifyContent="right">
                         <Grid item xs={3}>
-                            {gameState === "play" && playTime !== "infinity" && (
-                                <ProgressBar
-                                    timer={playTime}
-                                    callback={() => {
-                                        setGameState("result");
-                                    }}
-                                />
-                            )}
+                            {gameState === "play" &&
+                                playTime !== "infinity" && (
+                                    <ProgressBar
+                                        timer={playTime}
+                                        callback={() => {
+                                            setGameState("result");
+                                        }}
+                                    />
+                                )}
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <Paper sx={{
-                            overflow: "hidden",
-                            transition: "all 0.3s ease-in-out",
-                            height: `${height}px`,
-                            minHeight: `${height}px`,
-                            maxHeight: `${height}px`,
-                        }}>
+                        <Paper
+                            sx={{
+                                overflow: "hidden",
+                                transition: "all 0.3s ease-in-out",
+                                height: `${height}px`,
+                                minHeight: `${height}px`,
+                                maxHeight: `${height}px`,
+                            }}
+                        >
                             <div ref={HRef} style={{ padding: "2em" }}>
                                 {gameState === "standby" && (
                                     <Standby setGameState={setGameState} />

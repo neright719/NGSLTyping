@@ -14,7 +14,7 @@ import {
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 
-export const Settings = ({
+const Settings = ({
     speakWord,
     setGameState,
     isVoicePlay,
@@ -25,7 +25,6 @@ export const Settings = ({
     isShowJapanese,
     setIsShowJapanese,
 }) => {
-
     const changeVoicePlay = (e) => {
         setIsVoicePlay((v) => !v);
     };
@@ -152,3 +151,5 @@ export const Settings = ({
         </div>
     );
 };
+
+export default Settings;

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Tooltip, Button } from "@mui/material";
 
 const Standby = ({ setGameState }) => {
-
     const [isEnter, setIsEnter] = useState(false);
     useEffect(() => {
         if (isEnter) {
             setGameState("settings");
         }
-    }, [isEnter])
+    }, [isEnter]);
 
     const tooltip = (
         <div>
@@ -23,25 +22,25 @@ const Standby = ({ setGameState }) => {
     );
     return (
         <div>
-            <div style={{ fontSize: "16px" }}>
+            <div style={{ fontSize: "16px", lineHeight: "1.7em" }}>
                 <p>
-                    このサイトでは英単語の記憶を目的とし、
+                    このサイトでは、
                     <Tooltip title={tooltip} placement="top">
                         <a href="#">NGSL単語リスト</a>
                     </Tooltip>
-                    からランダムで選択された英単語のタイピングを行います。
+                    からランダムで選ばれた英単語をタイピングすることで、英単語の記憶を目的としています。
                 </p>
                 <p>
-                    タイピング画面では日本語訳と、訳に当てはまる英単語の最初の1文字が表示されています。
+                    タイピング画面では、日本語訳と英単語の最初の1文字が表示されます。
                 </p>
                 <p>
-                    英単語は1文字入力するごとに、その次の1文字が表示されていく仕組みです。
+                    英単語は最初の1文字以降は伏せられており、入力すると次に入力する1文字が表示されます。
                 </p>
                 <p>
-                    そのため、入力する英単語を知らない場合は1文字ずつ確認しながら打つことになります。
+                    そのため、日本語訳に対応する英単語を知らない場合は1文字ずつ確認しながら打つ必要があります。
                 </p>
                 <p>
-                    「素早く入力できる=英単語を覚えている」状態を目指し、素早く入力できるよう繰り返し練習しましょう。
+                    「素早く入力できる＝英単語を覚えている」状態を目指し、繰り返し練習して、素早く入力できるようになりましょう。
                 </p>
                 <p
                     style={{
@@ -50,9 +49,13 @@ const Standby = ({ setGameState }) => {
                         marginTop: "30px",
                     }}
                 >
-                    <Button onClick={(e) => {
-                        setIsEnter(true);
-                    }}>進む</Button>
+                    <Button
+                        onClick={(e) => {
+                            setIsEnter(true);
+                        }}
+                    >
+                        進む
+                    </Button>
                 </p>
             </div>
         </div>

@@ -1,0 +1,18 @@
+const ngslPosToJapanesePos = {
+        "abbreviation": "略語",
+        "adj": "形容詞",
+        "adv": "副詞",
+        "article": "冠詞",
+        "aux": "助動詞",
+        "conj": "接続詞",
+        "det": "限定詞",
+        "interjection": "感動詞",
+        "n": "名詞",
+        "num": "数詞",
+        "prep": "前置詞",
+        "pron": "代名詞",
+        "verb": "動詞",
+        "n pl.": "複数形"
+
+    };
+export default ngslPosToJapanesePos;
