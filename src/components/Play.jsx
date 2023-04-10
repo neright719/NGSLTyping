@@ -10,7 +10,7 @@ const Play = ({
 }) => {
     return (
         <div style={{ textAlign: "center" }}>
-            <div style={{ textAlign: "right", padding: "1em" }}>
+            <div style={{ textAlign: "right" }}>
                 <span style={{ marginRight: "1em" }}>
                     入力ミス:{typeMissCount}
                 </span>
