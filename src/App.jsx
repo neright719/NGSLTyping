@@ -7,9 +7,10 @@ import Result from "./components/Result";
 import Countdown from "./components/Countdonw";
 import ProgressBar from "./components/ProgressBar";
 import Settings from "./components/Settings";
+import json from "./assets/ngsl.json";
 
 function App() {
-    const [NGSLData, setNGSLData] = useState(); // 単語一覧
+    const [NGSLData, setNGSLData] = useState(json); // 単語一覧
     const [currentNGSL, setCurrentNGSL] = useState(); // ランダムに選択された単語の情報
     const [position, setPosition] = useState(0); // 入力位置
     const [isTypeMiss, setIsTypeMiss] = useState(false); // タイプミスのフラグ
@@ -98,12 +99,13 @@ function App() {
     //初回読み込み時、単語データが入ったjsonファイルを取得する
     useEffect(() => {
         //jsonファイルを取得し、jsonをstateへ格納
-        fetch("/src/nsgl.json")
-            .then((response) => response.json())
-            .then((data) => {
-                setNGSLData(data);
-                NGSLChoise(data);
-            });
+        // fetch("./src/assets/ngsl.json")
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         setNGSLData(data);
+        //         NGSLChoise(data);
+        //     });
+        NGSLChoise(json);
     }, []);
 
     //単語の切り替わり時、ゲーム開始時に音声を再生する
